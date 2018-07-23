@@ -37,8 +37,9 @@ RUN yum -y install libaio-devel libffi-devel glib2 glib2-devel \
     && cmake -DCMAKE_BUILD_TYPE=debug ./ \
     && make
 #archer
+ARG ARCHER_VERSION=1.1.7
 RUN cd /opt \
-    && git clone https://github.com/hhyo/archer.git \
+    && git clone -b v${ARCHER_VERSION} https://github.com/hhyo/archer.git \
     && source /opt/venv4archer/bin/activate \
     && pip3 install -r /opt/archer/src/docker/requirements.txt -i https://mirrors.ustc.edu.cn/pypi/web/simple/ \
     && cp /opt/archer/src/docker/connections.py /opt/venv4archer/lib/python3.6/site-packages/MySQLdb/connections.py \
